@@ -1360,6 +1360,8 @@ export default class Item5e extends SystemDocumentMixin(Item) {
      */
     if ( Hooks.call("dnd5e.preRollAttack", this, rollConfig) === false ) return;
 
+    // Set a formula custom roll if the unidentified is defined
+    rollConfig.data.formulaCustomRoll = rollConfig.data.item.description.unidentified.replace(/(<([^>]+)>)/ig, '');
     const roll = await d20Roll(rollConfig);
     if ( roll === null ) return null;
 

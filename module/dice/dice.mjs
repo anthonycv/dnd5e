@@ -55,9 +55,10 @@ export async function d20Roll({
   fastForward, chooseModifier=false, template, title, dialogOptions,
   chatMessage=true, messageData={}, rollMode, flavor
 }={}) {
-
+  // get the formula base from item description
+  const baseFormula = data.formulaCustomRoll ?? "1d20";
   // Handle input arguments
-  const formula = ["1d20"].concat(parts).join(" + ");
+  const formula = [baseFormula].concat(parts).join(" + ");
   const {advantageMode, isFF} = CONFIG.Dice.D20Roll.determineAdvantageMode({
     advantage, disadvantage, fastForward, event
   });
